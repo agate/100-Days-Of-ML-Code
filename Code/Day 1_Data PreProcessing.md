@@ -42,8 +42,9 @@ X[ : , 0] = labelencoder_X.fit_transform(X[ : , 0])
 ### Creating a dummy variable
 
 ```python
-onehotencoder = OneHotEncoder(categorical_features = [0])
-X = onehotencoder.fit_transform(X).toarray()
+from sklearn.compose import ColumnTransformer
+ct = ColumnTransformer([(\"Country\", OneHotEncoder(), [0])], remainder = 'passthrough')
+X = ct.fit_transform(X)
 labelencoder_Y = LabelEncoder()
 Y =  labelencoder_Y.fit_transform(Y)
 ```
@@ -51,7 +52,7 @@ Y =  labelencoder_Y.fit_transform(Y)
 ## Step 5: Splitting the datasets into training sets and Test sets
 
 ```python
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 X_train, X_test, Y_train, Y_test = train_test_split( X , Y , test_size = 0.2, random_state = 0)
 ```
 

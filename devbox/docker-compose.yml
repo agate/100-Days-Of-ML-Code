@@ -1,0 +1,10 @@
+version: '3'
+services:
+  devbox:
+    image: 100-days-of-ml-code
+    build: .
+    working_dir: /100-days-of-ml-code
+    volumes:
+      - ..:/100-days-of-ml-code
+    ports:
+      - 8888:8888
